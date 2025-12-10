@@ -1,5 +1,13 @@
 <form action="/firstapp/addbook/" method="post">
     {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <input type="submit" value="OK">
+</form>
+
+<!-- <form action="/firstapp/addbook/" method="post">
+    {% csrf_token %}
     <p><label for="ttl">Title: </label>
     <input id="ttl" type="text" name="title"></p>
     <p><label for="auth">Author's name: </label>
@@ -9,4 +17,4 @@
     <p><label for="pub">Publisher: </label>
     <input id="pub" type="text" name="publisher"></p>
     <input type="submit" value="OK">
-</form>
+</form> -->

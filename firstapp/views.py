@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from firstapp.forms import BookForm
+
 from .models import Book
 
 def index(request):
@@ -22,6 +24,26 @@ def book(request, id):
     context = {'book': book}
     return render(request, 'book.html', context)
 
-def getbook(request):
-    context = {}
+def getbook(request, author):
+    book = Book.objects.get(author=author)
+    form = BookForm(instance=book)
+    context = {'form': form}
+    return render(request, 'bookform.html', context)
+
+def addbook(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            title = data['title']
+            author = data['author']
+            price = data['price']
+            publisher = data['publisher']
+            book = Book(title=title, author=author, price=price, publisher=publisher)
+            book.save()
+
+            return HttpResponse('<h2>Book added successfully</h2>')
+
+
+    context = {'form': form}
     return render(request, 'bookform.html', context)
