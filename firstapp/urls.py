@@ -2,12 +2,23 @@ from django.urls import path
 
 from . import views
 
+# urlpatterns = [
+#     path('', views.index, name='index'),
+#     path('about/', views.about, name='about'),
+#     path('user/<str:name>/', views.user, name='user'),
+#     path('books/', views.books, name='books'),
+#     path('book/<int:id>/', views.book, name='book'),
+#     path('addbook/', views.addbook, name='addbook'),
+#     path('getbook/<str:author>', views.getbook, name='getbook'),
+# ]
+
+
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('about/', views.about, name='about'),
-    path('user/<str:name>/', views.user, name='user'),
-    path('books/', views.books, name='books'),
-    path('book/<int:id>/', views.book, name='book'),
-    path('addbook/', views.addbook, name='addbook'),
-    path('getbook/<str:author>', views.getbook, name='getbook'),
+    path('<name>', views.IndexView.as_view(), name='index'),
+    # path('about/', views.about, name='about'),
+    # path('user/<str:name>/', views.user, name='user'),
+    # path('books/', views.books, name='books'),
+    # path('book/<int:id>/', views.book, name='book'),
+    # path('addbook/', views.addbook, name='addbook'),
+    # path('getbook/<str:author>', views.getbook, name='getbook'),
 ]

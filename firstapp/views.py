@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from django.views.generic.base import TemplateView
+
 from firstapp.forms import BookForm
 
 from .models import Book
 
-def index(request):
-    return render(request, 'base.html')
+# def index(request):
+#     return render(request, 'base.html')
 
 def about(request):
     return HttpResponse("<h2>Know more about FirstApp.</h2>")
@@ -45,5 +47,13 @@ def addbook(request):
             return HttpResponse('<h2>Book added successfully</h2>')
 
 
-    context = {'form': form}
-    return render(request, 'bookform.html', context)
+        context = {'form': form}
+        return render(request, 'bookform.html', context)
+    
+
+class IndexView(TemplateView):
+    template_name = 'base.html'
+
+    def get_context_data(self, **kwargs):
+        context = {"name" : self.kwargs['name']}
+        return context
