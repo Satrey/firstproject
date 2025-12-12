@@ -13,8 +13,10 @@ from . import views
 # ]
 
 
-urlpatterns = [
+urlpatterns += [
     path('<name>', views.IndexView.as_view(), name='index'),
+    path('newbook/', views.BookCreateView.as_view(), name='newbook'),
+    path('update/<int:pk>', views.BookUpdateView.as_view(), name='update')
     # path('about/', views.about, name='about'),
     # path('user/<str:name>/', views.user, name='user'),
     # path('books/', views.books, name='books'),

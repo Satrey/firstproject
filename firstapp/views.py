@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from django.views.generic import CreateView
+from django.views.generic.edit import UpdateView
 from django.views.generic.base import TemplateView
 
 from firstapp.forms import BookForm
@@ -57,3 +59,21 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = {"name" : self.kwargs['name']}
         return context
+    
+
+class BookCreateView(CreateView):
+    model = Book
+    firlds = '__all__'
+    template_name = 'book_create_form.html'
+    success_url = '../books/'
+
+
+class BookUpdateView(UpdateView):
+    model = Book
+    firlds = '__all__'
+    template_name = 'book_create_form.html'
+    success_url = '../books/'
+
+
+class BookDeleteView(DeleteView):
+    
