@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from django.views.generic import CreateView
-from django.views.generic.edit import UpdateView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.base import TemplateView
 
 from firstapp.forms import BookForm
@@ -76,4 +77,14 @@ class BookUpdateView(UpdateView):
 
 
 class BookDeleteView(DeleteView):
+    model = Book
+    fields = '__all__'
+    template_name = 'book_confirm_delete.html'
+    success_url = '../books/'
+
+    def get_objects(self):
+        return Book.objects.get(author=self.kwargs['author'])
+    
+
+class BookDetailView(DetailView):
     
