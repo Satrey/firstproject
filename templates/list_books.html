@@ -1,0 +1,47 @@
+<html>
+<body>
+    <h2 style = "text-align: center;">List of Books</h2>
+    <br>
+    <div style="overflow-x: auto;">
+        <p>
+            <a href="../newbook/">
+                <input type="button" value="Add New Book">
+            </a>
+        </p>
+        <div>
+        <table style="width: 100%;">
+            <tr style="text-align: center;">
+                <th>Title</th>
+                <th>Author</th>
+                <th>Price</th>
+                <th>Detail</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            {% for book in books %}
+                <tr style="text-align: right;">
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.price }}</td>
+                    <td><a href="../show/{{ book.id }}">
+                            <input type="button" value="Detail">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="../update/{{ book.id }}">
+                            <input type="button" value="Update">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="../delete/{{ book.author }}">
+                            <input type="button" value="Delete">
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            
+        </table>
+        </div>
+    </div>
+
+</html>

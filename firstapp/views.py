@@ -2,9 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from django.views.generic import CreateView
+<<<<<<< HEAD
 from django.views.generic.detail import DetailView
+=======
+>>>>>>> e6668f6 (str238 DRF app created.)
 from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from firstapp.forms import BookForm
 
@@ -71,13 +76,14 @@ class BookCreateView(CreateView):
 
 class BookUpdateView(UpdateView):
     model = Book
-    firlds = '__all__'
+    fields = '__all__'
     template_name = 'book_create_form.html'
     success_url = '../books/'
 
 
 class BookDeleteView(DeleteView):
     model = Book
+<<<<<<< HEAD
     fields = '__all__'
     template_name = 'book_confirm_delete.html'
     success_url = '../books/'
@@ -88,3 +94,25 @@ class BookDeleteView(DeleteView):
 
 class BookDetailView(DetailView):
     
+=======
+    template_name = 'book_confirm_delete.html'
+    success_url = '../books/'
+
+    def get_object(self):
+        return Book.objects.get(author = self.kwargs['author'])
+    
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'book.html'
+
+
+class BookListView(ListView):
+    model = Book
+    template_name = 'list_books.html'
+
+    def get_context_data(self, **kwargs):
+        books = Book.objects.all()
+        context = {'books': books}
+        return context
+>>>>>>> e6668f6 (str238 DRF app created.)
